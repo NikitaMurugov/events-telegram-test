@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('body');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();;
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
+            $table->text('secret_key');
             $table->timestamps();
         });
     }

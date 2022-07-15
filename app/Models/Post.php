@@ -10,6 +10,6 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'body', 'active', 'user_id'
+        'name', 'body', 'active', 'user_id', 'secret_key'
     ];
 }

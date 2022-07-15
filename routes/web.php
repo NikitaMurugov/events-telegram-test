@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (\App\Helpers\Telegram $telegram) {
+
     return view('welcome');
 })->name('home');
 Route::resource('posts', App\Http\Controllers\PostController::class);
+
+

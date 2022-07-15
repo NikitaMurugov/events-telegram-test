@@ -21,6 +21,8 @@ class PostFactory extends Factory
             'name' => fake()->title(),
             'body' => fake()->paragraph(),
             'user_id' => rand(1,15),
+            'active' => rand(0,1),
+            'secret_key' => base64_encode(md5(uniqid())),
         ];
     }
 }

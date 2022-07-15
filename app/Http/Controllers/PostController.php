@@ -31,10 +31,14 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+
         $data = $request->validated();
         $data['user_id'] = 1;
+        $data['secret_key'] = base64_encode(md5(uniqid()));
 
         $post = Post::create($data);
+
+        \App\Events\PostCreated::dispatch($post, $data['secret_key']);
 
         return redirect()->route('posts.index');
     }
@@ -66,6 +70,7 @@ class PostController extends Controller
         $post->update([
             'active'=> $request->input('active'),
         ]);
+        \App\Events\PostStatusChanged::dispatch($post);
         return redirect()->route('posts.show', $post);
     }
 
